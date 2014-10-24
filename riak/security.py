@@ -21,15 +21,15 @@ from OpenSSL import crypto
 import warnings
 from riak import RiakError
 
-#OPENSSL_VERSION_101G = 268439679
-#sslver = OpenSSL.SSL.OPENSSL_VERSION_NUMBER
-## Be sure to use at least OpenSSL 1.0.1g
-#if (sslver < OPENSSL_VERSION_101G) or \
-#        not hasattr(OpenSSL.SSL, 'TLSv1_2_METHOD'):
-#    verstring = OpenSSL.SSL.SSLeay_version(OpenSSL.SSL.SSLEAY_VERSION)
-#    msg = "Found {0} version, but expected at least OpenSSL 1.0.1g.  " \
-#          "Security may not support TLS 1.2.".format(verstring)
-#    warnings.warn(msg, UserWarning)
+OPENSSL_VERSION_101G = 268439679
+sslver = OpenSSL.SSL.OPENSSL_VERSION_NUMBER
+# Be sure to use at least OpenSSL 1.0.1g
+if (sslver < OPENSSL_VERSION_101G) or \
+        not hasattr(OpenSSL.SSL, 'TLSv1_2_METHOD'):
+    verstring = OpenSSL.SSL.SSLeay_version(OpenSSL.SSL.SSLEAY_VERSION)
+    msg = "Found {0} version, but expected at least OpenSSL 1.0.1g.  " \
+          "Security may not support TLS 1.2.".format(verstring)
+    warnings.warn(msg, UserWarning)
 
 
 class SecurityError(RiakError):
